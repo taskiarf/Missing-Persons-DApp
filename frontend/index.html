@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Missing Persons DApp</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1, h2 { margin-bottom: 8px; }
+    form { margin-bottom: 20px; }
+    input, select, button { margin-right: 8px; margin-bottom: 4px; }
+    #search-results, #schedule-results { white-space: pre-wrap; font-family: monospace; }
+    #btn-connect { margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Missing Persons Management</h1>
+
+  <!-- 0) Connect Wallet -->
+  <button id="btn-connect">Connect Wallet</button>
+  <div id="current-account" style="margin-bottom:16px; font-weight:bold;"></div>
+
+  <!-- 1) Register -->
+  <h2>Register</h2>
+  <form id="form-register">
+    <input id="nid"   name="nid"   placeholder="NID" required />
+    <input id="name"  name="name"  placeholder="Name" required />
+    <input id="addr"  name="addr"  placeholder="Home Address" required />
+    <select id="role" name="role">
+      <option value="1">Reporter</option>
+      <option value="2">Investigator</option>
+    </select>
+    <button type="submit">Register</button>
+  </form>
+
+  <!-- 2) Add Missing Person -->
+  <h2>Add Missing Person</h2>
+  <form id="form-add-case">
+    <input id="case-name"     name="caseName"      placeholder="Name"            required />
+    <input id="case-age"      name="caseAge"   type="number" placeholder="Age"             required />
+    <input id="case-height"   name="caseHeight"type="number" placeholder="Height (cm)"    required />
+    <input id="case-desc"     name="caseDesc"      placeholder="Description"     required />
+    <input id="case-div"      name="caseDivision"  placeholder="Division"        required />
+    <input id="case-contact"  name="caseContact"   placeholder="Relative Contact" required />
+    <button type="submit">Add Case</button>
+  </form>
+
+  <!-- 3) Assign Investigator -->
+  <h2>Assign Investigator</h2>
+  <form id="form-assign">
+    <input id="assign-caseId"       name="assignCaseId"       type="number"  placeholder="Case ID"               required />
+    <input id="assign-investigator" name="assignInvestigator" placeholder="Investigator Address" required />
+    <button type="submit">Assign Investigator</button>
+  </form>
+
+  <!-- 4) Update Status -->
+  <h2>Update Status</h2>
+  <form id="form-update-status">
+    <input id="update-caseId"   name="updateCaseId"   type="number" placeholder="Case ID" required />
+    <select id="update-status"  name="updateStatus">
+      <option value="0">MISSING</option>
+      <option value="1">FOUND</option>
+    </select>
+    <button type="submit">Update Status</button>
+  </form>
+
+  <!-- 5) Search by Division -->
+  <h2>Search by Division</h2>
+  <form id="form-search">
+    <input id="search-division" name="searchDivision" placeholder="Division" required />
+    <button type="submit">Search</button>
+  </form>
+  <div id="search-results"></div>
+
+  <!-- 6) Book Appointment -->
+  <h2>Book Appointment</h2>
+  <form id="form-book">
+    <input id="book-caseId"    name="bookCaseId"   type="number" placeholder="Case ID" required />
+    <input id="book-timeSlot"  name="bookTimeSlot" placeholder="Time Slot" required />
+    <button type="submit">Book Appointment (0.01 ETH)</button>
+  </form>
+
+  <!-- 7) View Schedule -->
+  <h2>View Schedule</h2>
+  <form id="form-schedule">
+    <input id="schedule-investigator" name="scheduleInvestigator" placeholder="Investigator Address" required />
+    <button type="submit">Get Schedule</button>
+  </form>
+  <div id="schedule-results"></div>
+
+  <!-- Web3 + App Script -->
+  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
